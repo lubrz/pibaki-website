@@ -626,11 +626,16 @@ footer {
     }
     
     .faq-item {
-        padding: 20px;
+        padding: 0;
     }
     
-    .faq-item h3 {
+    .faq-item summary {
+        padding: 20px;
         font-size: 1rem;
+    }
+    
+    .faq-item p {
+        padding: 0 20px 20px 20px;
     }
     
     .content {
@@ -657,12 +662,12 @@ footer {
 
 .faq-item {
     background: var(--pibaki-card-bg);
-    padding: 24px;
     margin-bottom: 16px;
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-sm);
     border-left: 4px solid var(--pibaki-primary);
     transition: all var(--transition-normal);
+    overflow: hidden;
 }
 
 .faq-item:hover {
@@ -670,23 +675,46 @@ footer {
     transform: translateX(4px);
 }
 
-.faq-item h3 {
+.faq-item summary {
+    padding: 24px;
     color: var(--pibaki-secondary);
-    margin-bottom: 12px;
     font-size: 1.1rem;
     font-weight: 600;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
-.faq-item h3::before {
-    content: "Q: ";
+.faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq-item summary::before {
+    content: "Q:";
     color: var(--pibaki-primary);
     font-weight: bold;
 }
 
+.faq-item summary::after {
+    content: "+";
+    margin-left: auto;
+    font-size: 1.5rem;
+    color: var(--pibaki-primary);
+    transition: transform var(--transition-normal);
+}
+
+.faq-item[open] summary::after {
+    content: "−";
+}
+
 .faq-item p {
+    padding: 0 24px 24px 24px;
     color: var(--pibaki-text);
     line-height: 1.6;
     margin: 0;
+    animation: fadeIn 0.3s ease;
 }
 
 .faq-item p::before {
@@ -694,6 +722,17 @@ footer {
     color: var(--pibaki-success);
     font-weight: bold;
     margin-right: 4px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* ============================================
