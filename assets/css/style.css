@@ -73,6 +73,16 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Improve tap targets on mobile */
+@media (hover: none) and (pointer: coarse) {
+    a, button, summary {
+        min-height: 44px;
+        min-width: 44px;
+    }
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -172,6 +182,50 @@ nav a.active {
     color: white;
     font-size: 1.5rem;
     cursor: pointer;
+    padding: 8px;
+    min-width: 44px;
+    min-height: 44px;
+}
+
+.menu-toggle:focus {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    outline-offset: 2px;
+}
+
+/* Mobile navigation when open */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+    
+    nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: linear-gradient(135deg, var(--pibaki-primary-light), var(--pibaki-primary-dark));
+        box-shadow: var(--shadow-lg);
+        padding: var(--spacing-md);
+        width: 100%;
+        flex-direction: column;
+        z-index: 99;
+    }
+    
+    nav.nav-open {
+        display: flex;
+    }
+    
+    nav a {
+        width: 100%;
+        text-align: center;
+        padding: 12px var(--spacing-md);
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: var(--radius-sm);
+    }
 }
 
 /* ============================================
@@ -296,6 +350,12 @@ nav a.active {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: var(--spacing-lg);
+}
+
+@media (max-width: 640px) {
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .feature-card {
@@ -576,9 +636,190 @@ footer {
 /* ============================================
    Responsive Design
    ============================================ */
-@media (max-width: 768px) {
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+    :root {
+        --spacing-xs: 0.375rem;
+        --spacing-sm: 0.75rem;
+        --spacing-md: 1rem;
+        --spacing-lg: 1.5rem;
+        --spacing-xl: 2rem;
+        --spacing-xxl: 2.5rem;
+    }
+    
     header {
-        padding: var(--spacing-sm);
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+    
+    .header-content {
+        flex-wrap: wrap;
+    }
+    
+    .logo img {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .logo h1 {
+        font-size: 1.25rem;
+    }
+    
+    nav {
+        width: 100%;
+        flex-direction: column;
+        margin-top: var(--spacing-sm);
+        gap: var(--spacing-xs);
+    }
+    
+    nav a {
+        padding: 12px var(--spacing-md);
+        font-size: 0.95rem;
+        text-align: center;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .hero {
+        padding: var(--spacing-lg) var(--spacing-md);
+    }
+    
+    .hero h2 {
+        font-size: 1.5rem;
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    .hero .tagline {
+        font-size: 1rem;
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .hero-badges {
+        gap: 8px;
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .badge {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+    
+    .cta-button {
+        padding: 14px var(--spacing-lg);
+        font-size: 1rem;
+        min-height: 48px;
+    }
+    
+    .section-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .section-header p {
+        font-size: 0.95rem;
+    }
+    
+    .features,
+    .screenshots,
+    .how-it-works,
+    .faq {
+        padding: var(--spacing-xl) var(--spacing-md);
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+    
+    .feature-card {
+        padding: var(--spacing-md);
+    }
+    
+    .feature-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 1.5rem;
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    .feature-card h3 {
+        font-size: 1.1rem;
+    }
+    
+    .feature-card p {
+        font-size: 0.9rem;
+    }
+    
+    .step {
+        flex-direction: column;
+        text-align: center;
+        padding: var(--spacing-md);
+        gap: var(--spacing-sm);
+    }
+    
+    .step-number {
+        margin: 0 auto;
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+    
+    .step-content h3 {
+        font-size: 1.1rem;
+    }
+    
+    .step-content p {
+        font-size: 0.9rem;
+    }
+    
+    .faq-item {
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    .faq-item summary {
+        padding: var(--spacing-md);
+        font-size: 0.95rem;
+        line-height: 1.4;
+        min-height: 44px;
+    }
+    
+    .faq-item p {
+        padding: 0 var(--spacing-md) var(--spacing-md) var(--spacing-md);
+        font-size: 0.9rem;
+    }
+    
+    .content {
+        padding: var(--spacing-md);
+    }
+    
+    .content h1 {
+        font-size: 1.5rem;
+    }
+    
+    .content h2 {
+        font-size: 1.25rem;
+    }
+    
+    .content h3 {
+        font-size: 1.1rem;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: var(--spacing-md);
+    }
+    
+    footer {
+        padding: var(--spacing-lg) var(--spacing-md);
+    }
+}
+
+/* Tablet and medium mobile devices */
+@media (min-width: 481px) and (max-width: 768px) {
+    header {
+        padding: var(--spacing-sm) var(--spacing-md);
     }
     
     .header-content {
@@ -597,8 +838,11 @@ footer {
     }
     
     nav a {
-        padding: var(--spacing-xs) var(--spacing-sm);
+        padding: 10px var(--spacing-md);
         font-size: 0.9rem;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
     }
     
     .hero {
@@ -606,7 +850,11 @@ footer {
     }
     
     .hero h2 {
-        font-size: 1.75rem;
+        font-size: 2rem;
+    }
+    
+    .hero .tagline {
+        font-size: 1.1rem;
     }
     
     .features,
@@ -614,6 +862,10 @@ footer {
     .how-it-works,
     .faq {
         padding: var(--spacing-xl) var(--spacing-md);
+    }
+    
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
     
     .step {
@@ -625,17 +877,14 @@ footer {
         margin: 0 auto;
     }
     
-    .faq-item {
-        padding: 0;
-    }
-    
     .faq-item summary {
-        padding: 20px;
+        padding: var(--spacing-md);
         font-size: 1rem;
+        min-height: 44px;
     }
     
     .faq-item p {
-        padding: 0 20px 20px 20px;
+        padding: 0 var(--spacing-md) var(--spacing-md) var(--spacing-md);
     }
     
     .content {
@@ -643,7 +892,26 @@ footer {
     }
     
     .footer-content {
-        text-align: center;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Landscape mobile */
+@media (max-height: 600px) and (orientation: landscape) {
+    .hero {
+        padding: var(--spacing-lg) var(--spacing-md);
+    }
+    
+    .hero h2 {
+        font-size: 1.75rem;
+    }
+    
+    .hero .tagline {
+        font-size: 1rem;
+    }
+    
+    .section-header {
+        margin-bottom: var(--spacing-lg);
     }
 }
 
